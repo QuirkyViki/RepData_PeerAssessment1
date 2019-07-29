@@ -2,9 +2,10 @@
 title: "Project1"
 author: "Xiaochen Wang"
 date: "7/28/2019"
-output: 
-  html_document: 
+output:
+  html_document:
     keep_md: yes
+  pdf_document: default
 ---
 ## Loading and preprocessing the data
 ```{r setup}
@@ -12,7 +13,7 @@ knitr::opts_chunk$set(echo = TRUE)
 activity<-read.csv(file="activity.csv")
 ```
 ## What is mean total number of steps taken per day?
-```{r mean total number}
+```{r mean_total_number}
 totalstep<-tapply(activity$steps,activity$date,sum)
 hist(totalstep,main = "Histogram of total number of steps taken per day", xlab = "Total number of steps")
 mean(totalstep,na.rm =T)
@@ -21,7 +22,7 @@ median(totalstep,na.rm =T)
 
 ## What is the average daily activity pattern?
 
-```{r average daily activity pattern}
+```{r average_daily_activity_pattern}
 averagestep<-tapply(activity$steps,activity$interval,mean,na.rm =T)
 plot(averagestep,type="l")
 axis(1,at=1:288,labels = rownames(averagestep))
@@ -29,7 +30,7 @@ max(averagestep)
 which.max(averagestep)
 ```
 ## Imputing missing values
-```{r Imputing missing values}
+```{r Imputing_missing_values}
 sum(is.na(activity$steps))
 newactivity<-activity
 averagestep<-as.data.frame(averagestep)
@@ -53,7 +54,7 @@ median(newtotalstep)
 These values are different from the estimates from the first part of the assignment. Imputing missing data makes the dataset more accurate compared to the original one.
 
 ## Are there differences in activity patterns between weekdays and weekends?
-```{r differences in activity patterns between weekdays and weekends}
+```{r differences_in_activity_patterns_between_weekdays_and_weekends}
 newactivity$day <- weekdays(as.Date(newactivity$date))
 newactivity$day <- ifelse((newactivity$day) %in% c("Saturday", "Sunday"), "weekend", "weekday")
 par(mfrow=c(2,1),mar=c(4,4,2,1))

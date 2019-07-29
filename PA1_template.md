@@ -2,9 +2,10 @@
 title: "Project1"
 author: "Xiaochen Wang"
 date: "7/28/2019"
-output: 
-  html_document: 
+output:
+  html_document:
     keep_md: yes
+  pdf_document: default
 ---
 ## Loading and preprocessing the data
 
@@ -19,7 +20,7 @@ totalstep<-tapply(activity$steps,activity$date,sum)
 hist(totalstep,main = "Histogram of total number of steps taken per day", xlab = "Total number of steps")
 ```
 
-![](PA1_template_files/figure-html/mean total number-1.png)<!-- -->
+![](PA1_template_files/figure-html/mean_total_number-1.png)<!-- -->
 
 ```r
 mean(totalstep,na.rm =T)
@@ -46,7 +47,7 @@ plot(averagestep,type="l")
 axis(1,at=1:288,labels = rownames(averagestep))
 ```
 
-![](PA1_template_files/figure-html/average daily activity pattern-1.png)<!-- -->
+![](PA1_template_files/figure-html/average_daily_activity_pattern-1.png)<!-- -->
 
 ```r
 max(averagestep)
@@ -120,7 +121,7 @@ newtotalstep<-tapply(newactivity$steps,newactivity$date,sum)
 hist(newtotalstep,main = "Histogram of total number of steps taken per day", xlab = "Total number of steps")
 ```
 
-![](PA1_template_files/figure-html/Imputing missing values-1.png)<!-- -->
+![](PA1_template_files/figure-html/Imputing_missing_values-1.png)<!-- -->
 
 ```r
 mean(newtotalstep)
@@ -149,5 +150,5 @@ with(subset(newactivity,day=="weekday"),plot(steps,main="weekday",type="l"))
 with(subset(newactivity,day=="weekend"),plot(steps,main="weekend",type="l"))
 ```
 
-![](PA1_template_files/figure-html/differences in activity patterns between weekdays and weekends-1.png)<!-- -->
+![](PA1_template_files/figure-html/differences_in_activity_patterns_between_weekdays_and_weekends-1.png)<!-- -->
 
